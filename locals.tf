@@ -17,6 +17,14 @@ locals {
     Name        = format("%s%s", var.cluster_prefix, var.cluster_name)
   }, var.tags)
 
+  alb = {
+   id = aws_lb.cluster.id
+   arn = aws_lb.cluster.arn
+   arn_suffix = aws_lb.cluster.arn_suffix
+   dns_name = aws_lb.cluster.dns_name
+   zone_id = aws_lb.cluster.zone_id
+  }
+
   cluster_url = format("%s://%s:%d",
     var.certificate_arn != "" ? "https" : "http",
     var.cluster_domain != "" ? var.cluster_domain : aws_lb.cluster.dns_name,

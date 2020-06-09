@@ -11,12 +11,12 @@ output "ssh_private_key" {
   )
 }
 
-output "alb_dns_name" {
+output "alb" {
   description = <<-EOT
-    ALB external endpoint DNS name. Should use to assign 
-    "CNAME" record of public domain
+    ALB values map. Should use to assign 
+    "CNAME" record of public domain or "ALIAS"
   EOT
-  value       = aws_lb.cluster.dns_name
+  value       = local.alb
 }
 
 output "cluster_url" {
